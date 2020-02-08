@@ -9,7 +9,7 @@ def set_keys(creds):
     # Endpoint and key information for submitting text for analysis through
     # Azure Cognitive Services [ACS]
     global ep; ep = creds["endpoint"]
-    global key; key = creds["acs_key"]
+    global key; key = creds["key"]
 
 
 # tweets : contains the cleaned text from the data pulling class to perform sentiment analysis
