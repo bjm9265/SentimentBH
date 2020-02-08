@@ -8,6 +8,7 @@ import analyze as anly
 import visualize as vis
 import matplotlib.pyplot as plt
 
+
 # Launching the program
 def main():
     print("Project Starting!")
@@ -18,8 +19,9 @@ def main():
     title = "Twitter's Feelings on KC Winning the Superbowl"
     labels = 'Positive', 'Negative', 'Neutral'  # 'Positive', 'Negative', 'Neutral'
     plot = vis.pie_chart(30, 45, 25, title, labels)
-    plt.show()
-
+   # plt.show()
+    print(plt.style.available)
+    vis.image_gen(45)
 
 
 # Obligatory if-guard
