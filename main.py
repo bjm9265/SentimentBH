@@ -1,7 +1,6 @@
 """
 The main file of our BrickHack 6 project
 Team Members: Brian Mirabito, Evan Donohue, Sangu Mbekelu
-
 """
 
 
