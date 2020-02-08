@@ -34,9 +34,10 @@ def set_globals(credentials):
 
 
 def hashtag_pull(tag, amount):
-    tweets = []
+    text = []
     for i in range(amount):
-        tweet = twapi.search(tag)
-        tweets.append(tweet)
+        tweets = twapi.search(tag)
+        for tweet in tweets:
+            text.append(tweet.text)
 
-    return tweets
+    return text
