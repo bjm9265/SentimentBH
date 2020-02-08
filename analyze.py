@@ -3,7 +3,7 @@ from azure.ai.textanalytics import single_detect_language
 
 # The language code to check for, all others are discarded
 lang_code = "en"
-key = ""
+
 
 def set_keys(creds):
     # Endpoint and key information for submitting text for analysis through
