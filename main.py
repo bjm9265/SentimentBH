@@ -15,7 +15,9 @@ def main():
     anly.set_keys(credential_loader.get_acs_creds())
     GetData.set_globals(credential_loader.get_twitter_creds())
 
-    plot = vis.pie_chart(40, 50, "Feelings on Who Won the Superbowl")
+    title = "Twitter's Feelings on KC Winning the Superbowl"
+    labels = 'Positive', 'Negative', 'Neutral'  # 'Positive', 'Negative', 'Neutral'
+    plot = vis.pie_chart(30, 45, 25, title, labels)
     plt.show()
 
 
