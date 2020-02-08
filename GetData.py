@@ -57,14 +57,23 @@ def format_text(text):
 def hashtag_pull(query, amount):
     text = []
     parse = ""
+    dup_check = ""
     tweets = twapi.search(q=query, lang="en", count=amount, tweet_mode="extended")
     for tweet in tweets:
         if 'retweeted_status' in dir(tweet):
             parse = format_text(tweet.retweeted_status.full_text)
             parse = format_text(parse)
-            text.append(parse)
+            if parse == dup_check:
+                pass
+            else:
+                text.append(parse)
+                dup_check = parse
         else:
             parse = format_text(tweet.full_text)
-            text.append(parse)
+            if parse == dup_check:
+                pass
+            else:
+                text.append(parse)
+                dup_check = parse
 
     return text
