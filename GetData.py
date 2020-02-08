@@ -1,4 +1,5 @@
 import tweepy
+import re
 
 """
 Function to get the key/token credentials passed from the main. Sets global variables needed for pulling tweets
@@ -32,12 +33,38 @@ def set_globals(credentials):
     global twapi
     twapi = tweepy.API(authInfo)
 
+def strip_links(text):
+    link_regex = re.compile('((https?):((//)|(\\\\))+([\w\d:#@%/;$()~_?\+-=\\\.&](#!)?)*)', re.DOTALL)
+    links = re.findall(link_regex, text)
+    for link in links:
+        text = text.replace(link[0], "")
+    return text
 
-def hashtag_pull(tag, amount):
+def strip_tw_chars(text):
+    x = text.replace("#", "")
+    y = x.replace("@", "")
+    z = y.replace("\n", " ")
+    l = z.replace("&amp", "and")
+    return l
+
+
+def format_text(text):
+    tweet = text
+    tweet = strip_links(tweet)
+    tweet = strip_tw_chars(tweet)
+    return tweet
+
+def hashtag_pull(query, amount):
     text = []
-    for i in range(amount):
-        tweets = twapi.search(tag)
-        for tweet in tweets:
-            text.append(tweet.text)
+    parse = ""
+    tweets = twapi.search(q=query, lang="en", count=amount, tweet_mode="extended")
+    for tweet in tweets:
+        if 'retweeted_status' in dir(tweet):
+            parse = format_text(tweet.retweeted_status.full_text)
+            parse = format_text(parse)
+            text.append(parse)
+        else:
+            parse = format_text(tweet.full_text)
+            text.append(parse)
 
     return text
