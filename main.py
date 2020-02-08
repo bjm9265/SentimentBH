@@ -4,7 +4,7 @@
 # Launching the program
 def main():
     print("Project Starting!")
-    
+
 
 # Obligatory if-guard
 if __name__ == '__main__':
