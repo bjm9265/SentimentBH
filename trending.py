@@ -1,10 +1,7 @@
 import tweepy
-"""
-Function to get the key/token credentials passed from the main. Sets global variables needed for pulling tweets
-and instantiates the tweepy api.
-"""
 
 
+#  Duplicated code from get_data
 def set_globals(credentials):
     # Twitter dev account given consumer key
     global consumer_key
@@ -31,7 +28,9 @@ def set_globals(credentials):
     global twapi
     twapi = tweepy.API(authInfo)
 
-def Get_trending():
+
+#  get_trending function takes the top 50 trending in the United States using the WOE ID
+def get_trending():
     trends = []
     US_woe_id = 23424977
 
@@ -45,7 +44,9 @@ def Get_trending():
 
     return trends
 
-def Top10Trending():
+
+#  top_ten_trending function cuts the top 50 down to 10, and puts their names in a list of strings
+def top_ten_trending():
     Trends = []
     trends = Get_trending()
     tentrends = trends[0]["trends"][0:9]
