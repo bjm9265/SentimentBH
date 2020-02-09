@@ -1,12 +1,9 @@
 import tweepy
 import re
 
-"""
-Function to get the key/token credentials passed from the main. Sets global variables needed for pulling tweets
-and instantiates the tweepy api.
-"""
 
-
+#  Function to get the key/token credentials passed from the main. Sets global variables needed for pulling tweets
+#  and instantiates the tweepy api.
 def set_globals(credentials):
     # Twitter dev account given consumer key
     global consumer_key
@@ -31,15 +28,11 @@ def set_globals(credentials):
 
     # tweepy api object
     global twapi
-    twapi = tweepy.API(authInfo)
+    twapi = tweepy.API(auth_handler=authInfo, wait_on_rate_limit=True)
 
 
-"""
-Method to remove links from tweet text.
-returns plaintext
-"""
-
-
+#  Method to remove links from tweet text.
+#  returns plaintext
 def strip_links(text):
     link_regex = re.compile('((https?):((//)|(\\\\))+([\w\d:#@%/;$()~_?\+-=\\\.&](#!)?)*)', re.DOTALL)
     links = re.findall(link_regex, text)
@@ -48,13 +41,9 @@ def strip_links(text):
     return text
 
 
-"""
-Method for removing the #,@,\n characters in the tweet but keeping the string for the tag. Also fixes & signs appearing
-as &amp
-returns plaintext
-"""
-
-
+#  Method for removing the #,@,\n characters in the tweet but keeping the string for the tag. Also fixes & signs
+#  appearing as &amp
+#  returns plaintext
 def strip_tw_chars(text):
     x = text.replace("#", "")
     y = x.replace("@", "")
@@ -63,12 +52,8 @@ def strip_tw_chars(text):
     return l
 
 
-"""
-Formatting helper method that makes both text strip calls
-returns plaintext
-"""
-
-
+#  Formatting helper method that makes both text strip calls
+#  returns plaintext
 def format_text(text):
     tweet = text
     tweet = strip_links(tweet)
@@ -76,12 +61,8 @@ def format_text(text):
     return tweet
 
 
-"""
-Main method that is responsible for querying the type of tweets
-returns list of tweets as plaintext
-"""
-
-
+#  Main method that is responsible for querying the type of tweets
+#  returns list of tweets as plaintext
 def hashtag_pull(query, amount):
     # Instantiate used variables
     text = []
