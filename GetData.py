@@ -33,12 +33,27 @@ def set_globals(credentials):
     global twapi
     twapi = tweepy.API(authInfo)
 
+
+"""
+Method to remove links from tweet text.
+returns plaintext
+"""
+
+
 def strip_links(text):
     link_regex = re.compile('((https?):((//)|(\\\\))+([\w\d:#@%/;$()~_?\+-=\\\.&](#!)?)*)', re.DOTALL)
     links = re.findall(link_regex, text)
     for link in links:
         text = text.replace(link[0], "")
     return text
+
+
+"""
+Method for removing the #,@,\n characters in the tweet but keeping the string for the tag. Also fixes & signs appearing
+as &amp
+returns plaintext
+"""
+
 
 def strip_tw_chars(text):
     x = text.replace("#", "")
@@ -48,32 +63,43 @@ def strip_tw_chars(text):
     return l
 
 
+"""
+Formatting helper method that makes both text strip calls
+returns plaintext
+"""
+
+
 def format_text(text):
     tweet = text
     tweet = strip_links(tweet)
     tweet = strip_tw_chars(tweet)
     return tweet
 
+
+"""
+Main method that is responsible for querying the type of tweets
+returns list of tweets as plaintext
+"""
+
+
 def hashtag_pull(query, amount):
+    # Instantiate used variables
     text = []
     parse = ""
-    dup_check = ""
-    tweets = twapi.search(q=query, lang="en", count=amount, tweet_mode="extended")
-    for tweet in tweets:
+    # api tweet pull
+    for tweet in tweepy.Cursor(twapi.search, q=query, count=100, lang="en", tweet_mode="extended").items(amount):
         if 'retweeted_status' in dir(tweet):
             parse = format_text(tweet.retweeted_status.full_text)
             parse = format_text(parse)
-            if parse == dup_check:
+            if parse in text:
                 pass
             else:
                 text.append(parse)
-                dup_check = parse
         else:
             parse = format_text(tweet.full_text)
-            if parse == dup_check:
+            if parse in text:
                 pass
             else:
                 text.append(parse)
-                dup_check = parse
-
+    # list of pulled tweets as strings
     return text
