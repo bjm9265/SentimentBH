@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 from PIL import Image, ImageDraw, ImageFont
+import os
 
 green = (62, 201, 83)
 red = (194, 52, 33)
@@ -32,10 +33,12 @@ def image_gen(val):
     maincolor = red
     msgcolor = (255, 255, 255)
 
-    main = ImageFont.truetype('C:\Windows\Fonts\Calibri.ttf', 130)
-    message = ImageFont.truetype('C:\Windows\Fonts\Calibri.ttf', 32)
-    img = Image.new('RGB', (600, 300), color=backcolor)
-    d = ImageDraw.Draw(img)
-    d.text((200, 50), percent, font=main, fill=maincolor)
-    d.text((40, 200), msg, font=message, fill=msgcolor)
-    img.save('test.png')
+    if os.name == 'nt':
+        main = ImageFont.truetype('C:\Windows\Fonts\Calibri.ttf', 130)
+        message = ImageFont.truetype('C:\Windows\Fonts\Calibri.ttf', 32)
+
+        img = Image.new('RGB', (600, 300), color=backcolor)
+        d = ImageDraw.Draw(img)
+        d.text((200, 50), percent, font=main, fill=maincolor)
+        d.text((40, 200), msg, font=message, fill=msgcolor)
+        img.save('test.png')
