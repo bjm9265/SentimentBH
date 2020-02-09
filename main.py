@@ -3,7 +3,7 @@ The main file of our BrickHack 6 project
 Team Members: Brian Mirabito, Evan Donohue, Sangu Mbekelu
 """
 import credential_loader
-import GetData
+import get_data
 import analyze as anyl
 import visualize as vis
 import matplotlib.pyplot as plt
@@ -14,7 +14,7 @@ def main():
     print("Project Starting!")
     credential_loader.load_creds()
     anyl.set_keys(credential_loader.get_acs_creds())
-    GetData.set_globals(credential_loader.get_twitter_creds())
+    get_data.set_globals(credential_loader.get_twitter_creds())
 
     title = "Does Paige have a crush on Austin Moon?"
     labels = 'Yes', 'No', 'Maybe'  # 'Positive', 'Negative', 'Neutral'
