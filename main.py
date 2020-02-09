@@ -18,9 +18,9 @@ def main():
 
     title = "Does Paige have a crush on Austin Moon?"
     labels = 'Yes', 'No', 'Maybe'  # 'Positive', 'Negative', 'Neutral'
-    plot = vis.pie_chart(90, 7, 3, title, labels)
+    plot = vis.piechart_gen(90, 7, 3, title, labels)
     # plt.show()
-    vis.image_gen(90)
+    vis.snapshot_gen(90)
 
 
 # Obligatory if-guard
