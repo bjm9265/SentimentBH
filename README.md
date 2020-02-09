@@ -3,7 +3,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/emd5310/SentimentBH">
-    <img src="Profile.jpg" alt="Logo" width="100" height="100">
+    <img src="Profile.jpg" alt="Logo" width="200" height="200">
   </a>
 
   <h3 align="center">#SentimentBH</h3>
