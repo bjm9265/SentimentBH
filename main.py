@@ -8,6 +8,15 @@ import analyze as anyl
 import visualize as vis
 import trending
 import matplotlib.pyplot as plt
+import os
+
+
+def clear_used_charts(name):
+    file = "/out/" + name + ".png"
+    if os.path.isfile(file):
+        os.remove(file)
+    else:
+        print("Error: " + file + "not found.")
 
 
 # Launching the program
