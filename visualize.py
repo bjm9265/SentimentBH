@@ -20,7 +20,7 @@ def piechart_gen(pos_per, neg_per, neu_per, title, labels):
            shadow=True, startangle=-180)
     ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
     plt.title(title)
-    plt.savefig("pie_chart.png")
+    plt.savefig("out\pie_chart.png")
     return fig
 
 
@@ -41,4 +41,4 @@ def snapshot_gen(val):
         d = ImageDraw.Draw(img)
         d.text((200, 50), percent, font=main, fill=maincolor)
         d.text((40, 200), msg, font=message, fill=msgcolor)
-        img.save('snapshot.png')
+        img.save('out\snapshot.png')
