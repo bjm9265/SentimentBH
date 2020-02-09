@@ -16,9 +16,9 @@ def main():
     anyl.set_keys(credential_loader.get_acs_creds())
     GetData.set_globals(credential_loader.get_twitter_creds())
 
-    title = "Twitter's Feelings on KC Winning the Superbowl"
-    labels = 'Positive', 'Negative', 'Neutral'  # 'Positive', 'Negative', 'Neutral'
-    plot = vis.pie_chart(30, 45, 25, title, labels)
+    title = "Does Paige have a crush on Austin Moon?"
+    labels = 'Yes', 'No', 'Maybe'  # 'Positive', 'Negative', 'Neutral'
+    plot = vis.pie_chart(90, 7, 3, title, labels)
     # plt.show()
     print(plt.style.available)
     vis.image_gen(90)
