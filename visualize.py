@@ -6,15 +6,11 @@ green = (62, 201, 83)
 red = (194, 52, 33)
 
 
-"""
-pos_per : int - Positive Percentage
-neg_per : int - Negative Percentage
-neu_per : int - Neutral Percentage
-title : str - title of the piechart
-labels : tuple of str - IN THE ORDER OF positive, negative, neutral
-"""
-
-
+# pos_per : int - Positive Percentage
+# neg_per : int - Negative Percentage
+# neu_per : int - Neutral Percentage
+# title : str - title of the piechart
+# labels : tuple of str - IN THE ORDER OF positive, negative, neutral
 def piechart_gen(pos_per, neg_per, neu_per, title, labels):
 
     # Pie chart, where the slices will be ordered and plotted counter-clockwise:
@@ -33,12 +29,8 @@ def piechart_gen(pos_per, neg_per, neu_per, title, labels):
     return fig
 
 
-"""
-raw_percent : int - Not a string, needs to have % sign appended
-blurb : string - The message to accompany the percentage shown
-"""
-
-
+# raw_percent : int - Not a string, needs to have % sign appended
+# blurb : string - The message to accompany the percentage shown
 def snapshot_gen(raw_percent, blurb):
 
     percent = str(raw_percent) + "%"
