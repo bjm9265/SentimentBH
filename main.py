@@ -6,6 +6,7 @@ import credential_loader
 import get_data
 import analyze as anyl
 import visualize as vis
+import trending
 import matplotlib.pyplot as plt
 
 
@@ -15,12 +16,19 @@ def main():
     credential_loader.load_creds()
     anyl.set_keys(credential_loader.get_acs_creds())
     get_data.set_globals(credential_loader.get_twitter_creds())
+    trending.set_globals(credential_loader.get_twitter_creds())
+    txt = "bitch boy slap fight"
+    txt = get_data.swap_curses(txt)
+    print(txt)
 
-    title = "Does Paige have a crush on Austin Moon?"
-    labels = 'Yes', 'No', 'Maybe'  # 'Positive', 'Negative', 'Neutral'
-    plot = vis.piechart_gen(90, 7, 3, title, labels)
-    # plt.show()
-    vis.snapshot_gen(90)
+    trends = trending.top_ten_trending()
+    for trend in trends:
+        tweets = get_data.hashtag_pull(trend, 70)
+        feels = anyl.sent_analysis(tweets)
+        vis.piechart_gen(feels['positive'], feels['negative'], feels['neutral'], "Twitters feeling on " + trend,
+                         trend)
+
+    # vis.snapshot_gen(90)
 
 
 # Obligatory if-guard

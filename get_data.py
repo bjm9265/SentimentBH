@@ -1,5 +1,6 @@
 import tweepy
 import re
+import numpy as np
 
 
 #  Function to get the key/token credentials passed from the main. Sets global variables needed for pulling tweets
@@ -52,13 +53,26 @@ def strip_tw_chars(text):
     return l
 
 
+def swap_curses(text):
+    text.lower()
+
+    word_filter = {}
+
+    with open("filterwords.csv") as file:
+        for line in file:
+            words = line.split(",")
+            word_filter[words[0].replace("\ufeff", "")] = words[1].replace("\n", "")
+    for key in word_filter.keys():
+        if key in text:
+            text = text.replace(key, word_filter[key])
+
+    return text
+
+
 #  Formatting helper method that makes both text strip calls
 #  returns plaintext
 def format_text(text):
-    tweet = text
-    tweet = strip_links(tweet)
-    tweet = strip_tw_chars(tweet)
-    return tweet
+    return swap_curses(strip_tw_chars(strip_links(text)))
 
 
 #  Main method that is responsible for querying the type of tweets

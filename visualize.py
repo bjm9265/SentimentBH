@@ -11,7 +11,7 @@ red = (194, 52, 33)
 # neu_per : int - Neutral Percentage
 # title : str - title of the piechart
 # labels : tuple of str - IN THE ORDER OF positive, negative, neutral
-def piechart_gen(pos_per, neg_per, neu_per, title, labels):
+def piechart_gen(pos_per, neg_per, neu_per, title, chartname):
 
     # Pie chart, where the slices will be ordered and plotted counter-clockwise:
     # labels = 'Positive', 'Negative', 'Neutral'
@@ -25,7 +25,7 @@ def piechart_gen(pos_per, neg_per, neu_per, title, labels):
            shadow=True, startangle=-180)
     ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
     plt.title(title)
-    plt.savefig("out\pie_chart.png")
+    plt.savefig("out/"+chartname+".png")
     return fig
 
 
@@ -51,4 +51,4 @@ def snapshot_gen(raw_percent, blurb):
         d = ImageDraw.Draw(img)
         d.text((200, 50), percent, font=main, fill=percolor)
         d.text((40, 200), blurb, font=blurbfont, fill=blurbcolor)
-        img.save('out\snapshot.png')
+        img.save('out/snapshot.png')

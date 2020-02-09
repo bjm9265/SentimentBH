@@ -26,7 +26,7 @@ def set_globals(credentials):
 
     # tweepy api object
     global twapi
-    twapi = tweepy.API(authInfo)
+    twapi = tweepy.API(auth_handler=authInfo, wait_on_rate_limit=True)
 
 
 #  get_trending function takes the top 50 trending in the United States using the WOE ID
@@ -48,7 +48,7 @@ def get_trending():
 #  top_ten_trending function cuts the top 50 down to 10, and puts their names in a list of strings
 def top_ten_trending():
     Trends = []
-    trends = Get_trending()
+    trends = get_trending()
     tentrends = trends[0]["trends"][0:9]
     for i in range(len(tentrends)):
 
