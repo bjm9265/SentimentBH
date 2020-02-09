@@ -6,12 +6,21 @@ green = (62, 201, 83)
 red = (194, 52, 33)
 
 
+"""
+pos_per : int - Positive Percentage
+neg_per : int - Negative Percentage
+neu_per : int - Neutral Percentage
+title : str - title of the piechart
+labels : tuple of str - IN THE ORDER OF positive, negative, neutral
+"""
+
+
 def piechart_gen(pos_per, neg_per, neu_per, title, labels):
 
     # Pie chart, where the slices will be ordered and plotted counter-clockwise:
     # labels = 'Positive', 'Negative', 'Neutral'
     sizes = [pos_per, neg_per, neu_per]
-    explode = (0, 0, 0)  # only "explode" the 2nd slice (i.e. 'Hogs')
+    explode = (0, 0, 0)  # Set one of there to .1 to make it "pop" out of the
 
     plt.style.use("sixfourtynine")
     fig, ax = plt.subplots()
@@ -24,21 +33,30 @@ def piechart_gen(pos_per, neg_per, neu_per, title, labels):
     return fig
 
 
-def snapshot_gen(val):
+"""
+raw_percent : int - Not a string, needs to have % sign appended
+blurb : string - The message to accompany the percentage shown
+"""
 
-    percent = str(val) + "%"
-    msg = "of people say pizza is their favorite food"  # 42 character message
 
-    backcolor = (36, 45, 48)
-    maincolor = red
-    msgcolor = (255, 255, 255)
+def snapshot_gen(raw_percent, blurb):
 
+    percent = str(raw_percent) + "%"
+    blurb = "of people say pizza is their favorite food"  # 42 character message
+
+    bcolor = (36, 45, 48)  # Color of the background (gray-ish)
+    percolor = red  # The color of the percentage (configurable)
+    blurbcolor = (255, 255, 255)  # Color of the blurb (white)
+
+    # Only create snapshots on Windows machines, as the path for Macs is different (and they don't have Calibri)
     if os.name == 'nt':
+        # Load the fonts and set the size
         main = ImageFont.truetype('C:\Windows\Fonts\Calibri.ttf', 130)
-        message = ImageFont.truetype('C:\Windows\Fonts\Calibri.ttf', 32)
-
-        img = Image.new('RGB', (600, 300), color=backcolor)
+        blurbfont = ImageFont.truetype('C:\Windows\Fonts\Calibri.ttf', 32)
+        # Creates a new color image, sets the resolution, draws background
+        img = Image.new('RGB', (600, 300), color=bcolor)
+        # Draws the text specifying the percentage, then the blurb
         d = ImageDraw.Draw(img)
-        d.text((200, 50), percent, font=main, fill=maincolor)
-        d.text((40, 200), msg, font=message, fill=msgcolor)
+        d.text((200, 50), percent, font=main, fill=percolor)
+        d.text((40, 200), blurb, font=blurbfont, fill=blurbcolor)
         img.save('out\snapshot.png')
