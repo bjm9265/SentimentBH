@@ -1,6 +1,5 @@
 import tweepy
 
-
 #  setup functionality for tweepy api. See get_data for more documentation on the method
 def set_globals(credentials):
     # Twitter dev account given consumer key
@@ -31,4 +30,4 @@ def set_globals(credentials):
 
 #  Simple one line method for posting a tweet automatically
 def post_tweet(name, path):
-    twapi.update_with_media(status="This is what Twitter's feelings on " + name, filename=path + " is atm!")
+    twapi.update_with_media(status="This is what Twitter's feelings on " + name + " is atm!", filename=path)
