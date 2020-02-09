@@ -9,14 +9,14 @@ import visualize as vis
 import trending
 import matplotlib.pyplot as plt
 import os
+import tweet
 
 
 def clear_used_charts(name):
-    file = "/out/" + name + ".png"
-    if os.path.isfile(file):
-        os.remove(file)
+    if os.path.isfile(name):
+        os.remove(name)
     else:
-        print("Error: " + file + "not found.")
+        print("Error: " + name + " not found.")
 
 
 # Launching the program
@@ -26,16 +26,21 @@ def main():
     anyl.set_keys(credential_loader.get_acs_creds())
     get_data.set_globals(credential_loader.get_twitter_creds())
     trending.set_globals(credential_loader.get_twitter_creds())
-    txt = "bitch boy slap fight"
-    txt = get_data.swap_curses(txt)
-    print(txt)
+    tweet.set_globals(credential_loader.get_twitter_creds())
 
+    pngs = []
     trends = trending.top_ten_trending()
     for trend in trends:
         tweets = get_data.hashtag_pull(trend, 70)
         feels = anyl.sent_analysis(tweets)
         vis.piechart_gen(feels['positive'], feels['negative'], feels['neutral'], "Twitters feeling on " + trend,
                          trend)
+        path = "out/" + trend + ".png"
+        pngs.append(path)
+        tweet.post_tweet(trend, path)
+
+    for name in pngs:
+        clear_used_charts(name)
 
     # vis.snapshot_gen(90)
 

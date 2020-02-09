@@ -30,5 +30,5 @@ def set_globals(credentials):
 
 
 #  Simple one line method for posting a tweet automatically
-def post_tweet(name):
-    twapi.update_status(status="Twitters feelings on " + name, media_ids="/out/" + name + ".png")
+def post_tweet(name, path):
+    twapi.update_with_media(status="This is what Twitter's feelings on " + name, filename=path + " is atm!")
