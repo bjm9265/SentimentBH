@@ -9,7 +9,7 @@
   <h3 align="center">#SentimentBH</h3>
 
   <p align="center">
-    ## Twitter Bot - @SentimentBH
+    Twitter Bot - @SentimentBH
     <br />
     <br />
     <br />
