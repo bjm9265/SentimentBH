@@ -45,7 +45,7 @@ def get_trending():
     return trends
 
 
-#  top_ten_trending function cuts the top 50 down to 10, and puts their names in a list of strings
+#  top_ten_trending function cuts the top 50 down to 10, and puts their names in a list of
 def top_ten_trending():
     Trends = []
     trends = Get_trending()
