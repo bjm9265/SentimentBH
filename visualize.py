@@ -22,9 +22,11 @@ def piechart_gen(pos_per, neg_per, neu_per, title, chartname):
     fig, ax = plt.subplots()
     ax.edgecolor= "orange"
     ax.pie(sizes, explode=explode, colors=("forestgreen", "tomato", "slategray"),  autopct='%1.1f%%',
-           shadow=True, startangle=-180)
+           shadow=True, startangle=-180, labels=("Positive", "Negative", "Neutral"),
+           labeldistance=None, pctdistance=.6)
     ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
     plt.title(title)
+    plt.legend(loc='upper right', bbox_to_anchor=(0.2, 0.2))
     plt.savefig("out/"+chartname+".png")
     return fig
 
