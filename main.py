@@ -20,7 +20,6 @@ def main():
     labels = 'Yes', 'No', 'Maybe'  # 'Positive', 'Negative', 'Neutral'
     plot = vis.pie_chart(90, 7, 3, title, labels)
     # plt.show()
-    print(plt.style.available)
     vis.image_gen(90)
 
 
