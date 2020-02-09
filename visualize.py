@@ -1,6 +1,8 @@
 import matplotlib.pyplot as plt
 from PIL import Image, ImageDraw, ImageFont
 
+green = (62, 201, 83)
+red = (194, 52, 33)
 
 def pie_chart(pos_per, neg_per, neu_per, title, labels):
 
@@ -22,13 +24,17 @@ def pie_chart(pos_per, neg_per, neu_per, title, labels):
 
 def image_gen(val):
 
-    percent = val + "%"
+    percent = str(val) + "%"
+    msg = "of people say pizza is their favorite food"  # 42 character message
+
+    backcolor = (36, 45, 48)
+    maincolor = red
+    msgcolor = (255, 255, 255)
 
     main = ImageFont.truetype('C:\Windows\Fonts\Calibri.ttf', 130)
-    message = ImageFont.truetype('C:\Windows\Fonts\Calibri.ttf', 90)
-    img = Image.new('RGB', (600, 400), color=(255, 255, 255))
-    img.save('test.png')
+    message = ImageFont.truetype('C:\Windows\Fonts\Calibri.ttf', 32)
+    img = Image.new('RGB', (600, 300), color=backcolor)
     d = ImageDraw.Draw(img)
-    d.text((200, 150), percent, font=main, fill=(62, 201, 83))
-    d.text((60, 300), percent, font=message, fill=(46, 51, 47))
+    d.text((200, 50), percent, font=main, fill=maincolor)
+    d.text((40, 200), msg, font=message, fill=msgcolor)
     img.save('test.png')
